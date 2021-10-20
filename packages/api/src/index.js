@@ -45,6 +45,7 @@ import {
   setMaintenanceModeGetter,
 } from './middleware/maintenance.js'
 import { withPsaErrorHandler } from './middleware/psa.js'
+import { getContext } from './utils/context.js'
 
 const log = debug('router')
 
@@ -52,7 +53,7 @@ const getMaintenanceMode = () =>
   typeof MAINTENANCE_MODE !== 'undefined' ? MAINTENANCE_MODE : DEFAULT_MODE
 setMaintenanceModeGetter(getMaintenanceMode)
 
-const r = new Router({
+const r = new Router(getContext, {
   onError(req, err, { sentry }) {
     log(err)
     return HTTPError.respond(err, { sentry })
@@ -88,9 +89,9 @@ r.add(
 
 /**
  * Apply Pinning Services API Middleware
- * @param {import('./utils/router.js').Handler} handler
+ * @param {import('./utils/router.js').Handler<import('./bindings.js').RouteContext>} handler
  * @param {import('./middleware/maintenance').Mode} mode
- * @returns {import('./utils/router.js').Handler}
+ * @returns {import('./utils/router.js').Handler<import('./bindings.js').RouteContext>}
  */
 const psa = (handler, mode) => withPsaErrorHandler(withMode(handler, mode))
 
