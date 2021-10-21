@@ -9,6 +9,7 @@ import * as Block from 'multiformats/block'
 import * as CAR from '../utils/car.js'
 import { debug } from '../utils/debug.js'
 import * as constants from '../constants.js'
+import { uploadCar } from './nfts-upload.js'
 
 const log = debug('nft-store')
 
@@ -57,24 +58,24 @@ export async function nftStoreV1(event, ctx) {
     hasher: sha256,
   })
   const car = await CAR.encode([block.cid], [block])
-  const { cid, bytes } = await cluster.add(car, {
-    local: car.size > constants.cluster.localAddThreshold,
-  })
 
-  await ctx.db.createUpload({
-    type: 'Nft',
-    content_cid: cid,
-    source_cid: cid,
-    dag_size: bytes,
-    user_id: user.id,
-    key_id: key?.id,
+  // TODO: how to do this?
+  const upload = await uploadCar({
+    ctx,
+    user,
+    key,
+    car,
+    uploadType: 'Nft',
+    mimeType: 'application/ipnft',
+    isComplete: false, // TODO: needs to be complete
+    files
   })
 
   const result = {
     ok: true,
     value: {
-      ipnft: cid,
-      url: `ipfs://${cid}/metadata.json`,
+      ipnft: upload.content_cid,
+      url: `ipfs://${upload.content_cid}/metadata.json`,
       data,
     },
   }

@@ -180,6 +180,10 @@ wrangler secret put SALT --env production # open `https://csprng.xyz/v1/api` in 
 wrangler secret put PINATA_JWT --env production # Get from Pinata
 wrangler secret put CLUSTER_BASIC_AUTH_TOKEN --env production # Get from nft.storage vault in 1password
 wrangler secret put CLUSTER_IPFS_PROXY_BASIC_AUTH_TOKEN --env production # Get from nft.storage vault in 1password
+wrangler secret put S3_BUCKET_REGION --env production # e.g us-east-2 (not required for dev)
+wrangler secret put S3_ACCESS_KEY_ID --env production # Get from Amazon S3 (not required for dev)
+wrangler secret put S3_SECRET_ACCESS_KEY_ID --env production # Get from Amazon S3 (not required for dev)
+wrangler secret put S3_BUCKET_NAME --env production # e.g web3.storage-staging-us-east-2 (not required for dev)
 wrangler publish --env production
 ```
 
@@ -208,3 +212,7 @@ When prompted for a value enter one of the following permission combinations:
 - `--` = no reading or writing
 - `r-` = read only mode
 - `rw` = read and write (normal operation)
+
+## S3 Setup
+
+We use [S3](https://aws.amazon.com/s3/) for backup and disaster recovery. For production deployment an account on AWS is required.

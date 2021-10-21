@@ -3,6 +3,7 @@ export {}
 import Toucan from 'toucan-js'
 import { Mode } from './middleware/maintenance.js'
 import { DBClient } from './utils/db-client.js'
+import { S3Client } from './utils/s3-client.js'
 
 declare global {
   const SALT: string
@@ -32,12 +33,18 @@ declare global {
   const VERSION: string
   const COMMITHASH: string
   const MAINTENANCE_MODE: Mode
+  const S3_ENDPOINT: string
+  const S3_REGION: string
+  const S3_ACCESS_KEY_ID: string
+  const S3_SECRET_ACCESS_KEY: string
+  const S3_BUCKET_NAME: string
 }
 
 export interface RouteContext {
   sentry: Toucan
   params: Record<string, string>
   db: DBClient
+  s3?: S3Client
 }
 
 export type Handler = (event: FetchEvent, ctx: RouteContext) => Promise<Response> | Response
