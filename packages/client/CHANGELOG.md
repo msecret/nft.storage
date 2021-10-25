@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.4.0](https://www.github.com/nftstorage/nft.storage/compare/nft.storage-v3.3.0...nft.storage-v3.4.0) (2021-10-25)
+
+
+### Features
+
+* support any IPLD decoder ([#587](https://www.github.com/nftstorage/nft.storage/issues/587)) ([278c9e2](https://www.github.com/nftstorage/nft.storage/commit/278c9e22565fee2aa1d1834cebca207bb31fb17f))
+
+
+### Bug Fixes
+
+* update links to moved repo ([#650](https://www.github.com/nftstorage/nft.storage/issues/650)) ([df94aaa](https://www.github.com/nftstorage/nft.storage/commit/df94aaa8f1ec1a2e7d60a258a90758b2df630c9a))
+
+
+### Changes
+
+* prettier and LF line endings (no functional changes) ([#580](https://www.github.com/nftstorage/nft.storage/issues/580)) ([e1e5bc4](https://www.github.com/nftstorage/nft.storage/commit/e1e5bc47e5ae112a0775a25b275691a818665f37))
+* update example dependencies ([f1ca9db](https://www.github.com/nftstorage/nft.storage/commit/f1ca9dbed41cad4a21b1f27f78abf84307194840))
+
 ## [3.3.0](https://www.github.com/nftstorage/nft.storage/compare/nft.storage-v3.2.2...nft.storage-v3.3.0) (2021-09-29)
 
 
